@@ -1,0 +1,14 @@
+{
+  "name": "testproject",
+  "version": "1.0.0",
+  "description": "test project",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "josephng1993@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

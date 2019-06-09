@@ -1,2 +1,2 @@
-./node_modules
-./express_app/node_modules
+.node_modules
+.express_app/node_modules

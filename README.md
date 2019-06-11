@@ -3,8 +3,7 @@
 ## node.js
 
 **installation**
-use node version manager to download for control
-for nodejs only
+use node version manager to download for control for nodejs only
 ```
 sudo apt-get install -y nodejs
 ```
@@ -20,7 +19,7 @@ check npm version with  `npm --version` which helps to download node packages
 npm init
 ```
 ## mongodb
-mongodb is a non-relational database
+mongodb is a non-relational database\
 **installation**
 ```
 sudo apt-get install -y mongodb-org
@@ -28,7 +27,7 @@ sudo service mongod start
 sudo service mongod stop
 sudo service mongod restart
 ```
-mongodb starts from system, so u can use `systemctl start mongodb.service`
+mongodb starts from system, so u can use `systemctl start mongodb.service`\
 to run the db itself, use `mongo`
 ### mongodb commands
 ```
@@ -48,8 +47,14 @@ express will be use as a server side webframework for nodejs
 npm install -g express
 express express_app
 ```
-packages will be placed in package.json like debug,express... use `npm install` to install/remove packages
-**Note** remove jade and `npm install pug --save` change views to pug in app.js and in views folder
+packages will be placed in package.json like debug,express... use `npm install` to install/remove packages\
+**Note:** remove jade and `npm install pug --save` change views to pug in app.js and in views folder\
+\
+**PACKAGES to have:**\ 
+- nodemon, use nodemon to run packages
+- pug
+- file-system
+
 ```
 // error handler
 app.use(function(err, req, res, next) {
@@ -79,9 +84,32 @@ now when '/' is visited, views/index.pug is rendered. in index.pug in views `ext
 
 ## concept: MVC, model view controller
 
-**model**: handles logic and connection to db
-**views**: the display
-**controller**: connect the models and views 
-![Alt text](https://imgur.com/3QIkdNJ.png)
-
-
+- **model**: handles logic and connection to db
+- **views**: the display
+- **controller**: connect the models and views  
+![Alt text](https://imgur.com/3QIkdNJ.png)  
+create controllers and models folder and `npm install file-system --save`
+in app.js
+```
+var app = express();
+// Require file system module
+var fs = require('file-system');
+// Include controllers
+fs.readdirSync('controllers').forEach(function (file) {
+if(file.substr(-3) == '.js') {
+const route = require('./controllers/' + file)
+route.controller(app)
+}
+})
+```
+in controllers/index.js
+```
+module.exports.controller = (app) => {
+// get homepage
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Express' });
+})
+}
+```
+all routes can be removed, route folder, var index = require('./routes/index') etc  
+when you render something from control, you can passed tags which is read by viewer,rendered name are also the pug name file.

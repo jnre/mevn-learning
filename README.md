@@ -55,6 +55,7 @@ packages will be placed in package.json like debug,express... use `npm install` 
 - pug
 - file-system
 - mongoose
+- serve-favicon (instead of static-favicon)
 
 ```
 // error handler
@@ -189,4 +190,17 @@ res.send({
   })
 })
 ```
+## Create read update delete = post get put delete
+status code of http
+- 200 is ok
+- 201 is created
+- 204 success but no return value
+- 400,client bad request
+- 401,client unauthorized
+- 403 forbidden permission on client side 
+- 404 not found
+- 500 internal server error
+- 503 server unavailable
+- 504 gateway timeout
 
+controller will be handling all the get,post,put,delete fields to connect to db. info are through body,and params for id

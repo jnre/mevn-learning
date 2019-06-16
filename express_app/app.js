@@ -1,24 +1,43 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+//Require file system module
+var fs = require('file-system');
 
 var app = express();
 
-//connect to mongodb
-mongoose.connect('mongodb://localhost:27017/express_app', function () {
+//connect to mongodb db name after 27017/
+mongoose.connect('mongodb://localhost:27017/mongo_test_queries', { useNewUrlParser: true }, function () {
         console.log('Connection has been made');
+        
     })
     .catch(err => {
         console.error('App starting error:', err.stack);
         process.exit(1);
     });
 
-//Require file system module
-var fs = require('file-system');
+var db = mongoose.connection;
+db.on("error", console.error.bind(console,"connection error"));
+db.once("open", function(callback){
+    console.log("Connection Succeeded");
+})
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Include controllers- to do the routing 
 fs.readdirSync('controllers').forEach(function (file) {
@@ -27,20 +46,6 @@ fs.readdirSync('controllers').forEach(function (file) {
         route.controller(app)
     }
 })
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 /// catch 404 and forwarding to error handler
 app.use(function (req, res, next) {
@@ -83,8 +88,8 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+module.exports = app;
+
 app.listen(3000, function () {
     console.log('listening on 3000')
 })
-
-module.exports = app;

@@ -88,7 +88,8 @@ now when '/' is visited, views/index.pug is rendered. in index.pug in views `ext
 - **model**: handles logic and connection to db
 - **views**: the display
 - **controller**: connect the models and views, like routing
-![Alt text](https://imgur.com/3QIkdNJ.png)  
+
+![Alt text](https://imgur.com/3QIkdNJ.png)\
 create controllers and models folder and `npm install file-system --save`
 in app.js
 ```

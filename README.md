@@ -203,4 +203,29 @@ status code of http
 - 503 server unavailable
 - 504 gateway timeout
 
-controller will be handling all the get,post,put,delete fields to connect to db. info are through body,and params for id
+controller will be handling all the getpost,put,delete fields to connect to db. info are through body,and params for id
+
+nstall -g vue-cli`
+`vue init webpack <name of project>`use vue router,es lint with airbnb, karma testrun with nightwatch e2e\
+edit HelloWorld.vue to change the layout,place css into src sub folders as shown
+using vuetify like bootstrap `npm install bootstrap bootstrap-vue vuetify --save`\
+route done from router folder, same style with express where components are the webpages
+
+### understand vue
+wraph everything with <template> in .vue files, written as html, v tags have functionality, e.g 
+- v-text
+- v-on
+- v-ref
+- v-show
+- v-pre 
+- v-transition
+- v-for
+  
+  data binding can be done using {{ }} instead so that it binds to a script in a component file
+flow: 
+- index.html -> bare bones, main.js creates the vue which is linked by the div element in index.
+- App.vue the true main file, imports stylesheets, overlay of website.
+- routes adds the different component together
+
+again install express and mongo stuff
+`npm install express morgan body-parser cors mongoose --save

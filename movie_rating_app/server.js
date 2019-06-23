@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost/movie_rating_app', () => {
 // Include controllers
 fs.readdirSync('controllers').forEach((file) => {
   if (file.substr(-3) == '.js') {
-    const route = require("./controllers/" + {file});
+    const route = require("./controllers/" + file);
 
     route.controller(app);
   }

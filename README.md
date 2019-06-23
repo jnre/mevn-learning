@@ -205,7 +205,7 @@ status code of http
 
 controller will be handling all the getpost,put,delete fields to connect to db. info are through body,and params for id
 
-nstall -g vue-cli`
+`install -g vue-cli`
 `vue init webpack <name of project>`use vue router,es lint with airbnb, karma testrun with nightwatch e2e\
 edit HelloWorld.vue to change the layout,place css into src sub folders as shown
 using vuetify like bootstrap `npm install bootstrap bootstrap-vue vuetify --save`\
@@ -221,11 +221,38 @@ wraph everything with <template> in .vue files, written as html, v tags have fun
 - v-transition
 - v-for
   
-  data binding can be done using {{ }} instead so that it binds to a script in a component file
+data binding can be done using {{ }} instead so that it binds to a script in a component file\
+\
 flow: 
 - index.html -> bare bones, main.js creates the vue which is linked by the div element in index.
 - App.vue the true main file, imports stylesheets, overlay of website.
 - routes adds the different component together
 
 again install express and mongo stuff
-`npm install express morgan body-parser cors mongoose --save
+`npm install express morgan body-parser cors mongoose --save`\
+servers stays in server.js in main
+```
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const morgan = require('morgan');
+const fs = require('fs');
+const app = express();
+const router = express.Router();
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(cors());
+//connect to mongodb
+mongoose.connect('mongodb://localhost/movie_rating_app', function() {
+console.log('Connection has been made');
+})
+.catch(err => {
+console.error('App starting error:', err.stack);
+process.exit(1);
+});
+router.get('/', function(req, res) {
+res.json({ message: 'API Initialized!'});
+});
+```
+use axios to connect in the addmovie script to link button to mongo\

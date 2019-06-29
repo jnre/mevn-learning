@@ -83,10 +83,20 @@ export default {
           },
         })
           .then(() => {
+            this.$swal(
+              'Great!',
+              'Movie added successfully!',
+              'success',
+            );
             this.$router.push({ name: 'Home' });
             this.$refs.form.reset();
           })
           .catch(() => {
+            this.$swal(
+              'Oh oo!',
+              'Could not add the movie!',
+              'error',
+            );
           });
       }
       return true;

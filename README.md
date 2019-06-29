@@ -256,3 +256,4 @@ res.json({ message: 'API Initialized!'});
 });
 ```
 use axios to connect in the addmovie script to link button to mongo\
+use vue-swal for flash message\

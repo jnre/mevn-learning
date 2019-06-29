@@ -4,7 +4,7 @@
     wrap
   >
     <v-flex xs4>
-      <v-card class ="card">
+      <v-card class="card">
         <v-card-title primary-title>
           <div>
             <div class="headline">Batman vs Superman</div>
@@ -159,3 +159,31 @@
     </v-flex>
   </v-layout>
 </template>
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'Movies',
+  data() {
+    return {
+      movies: [],
+    };
+  },
+  mounted() {
+    this.fetchMovies();
+  },
+  methods: {
+    async fetchMovies() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/movies',
+      })
+        .then((response) => {
+          this.movies = response.data.movies;
+        })
+        .catch(() => {
+        });
+    },
+  },
+};
+</script>

@@ -204,11 +204,12 @@ status code of http
 - 504 gateway timeout
 
 controller will be handling all the getpost,put,delete fields to connect to db. info are through body,and params for id
+##vue
 
 `install -g vue-cli`
 `vue init webpack <name of project>`use vue router,es lint with airbnb, karma testrun with nightwatch e2e\
 edit HelloWorld.vue to change the layout,place css into src sub folders as shown
-using vuetify like bootstrap `npm install bootstrap bootstrap-vue vuetify --save`\
+using vuetify like bootstrap `npm install bootstrap bootstrap-vue vuetify --save`\ add to index.html for styleseheet
 route done from router folder, same style with express where components are the webpages
 
 ### understand vue
@@ -224,8 +225,9 @@ wraph everything with <template> in .vue files, written as html, v tags have fun
 data binding can be done using {{ }} instead so that it binds to a script in a component file\
 \
 flow: 
+vue entry point after starting `npm run dev` is `main.js`, which calls `App.vue`
 - index.html -> bare bones, main.js creates the vue which is linked by the div element in index.
-- App.vue the true main file, imports stylesheets, overlay of website.
+- App.vue the true main file, imports stylesheets via script, with the .assets/stylesheets/main.css overlay of website.
 - routes adds the different component together
 
 again install express and mongo stuff
@@ -257,3 +259,5 @@ res.json({ message: 'API Initialized!'});
 ```
 use axios to connect in the addmovie script to link button to mongo\
 use vue-swal for flash message\
+### dynamic content
+now website is queried to db via axion(link to webby) and end point query
